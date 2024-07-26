@@ -1,68 +1,69 @@
-import Home from "./Pages/Home/Home";
-import Topbar from "./Components/Topbar/Topbar";
-import Single from "./Pages/Home/Single/Single";
-import Write from "./Pages/write/Write";
-import Settings from "./Pages/settings/Settings";
-import Login from "./Pages/login/Login";
-import Register from "./Pages/register/Register";
-import React from "react";
-
-
-
-import {
-
-  Route,
-  Router,
-  Routes,
-  BrowserRouter
-  
-  
-} from "react-router-dom";
-
-
-
-function App() {
-  const user = true;
-  // const user = false;
+// import React from 'react'
+import './Topbar.css'
+import { Link } from 'react-router-dom'
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import SearchIcon from '@mui/icons-material/Search';
+export default function Topbar() {
+  // const user = true;
+  const user = false;
   return (
-  <>
-      
+    <div className='top'>
+      <div className='topLeft'>
+      <FacebookIcon className='topIcon' />
+      <TwitterIcon className='topIcon'/>
+      <PinterestIcon className='topIcon' />
+      <InstagramIcon className='topIcon' />
+      </div>
+      <div className='topCenter'>
+         <ul className='topList'>
+         
 
-    <BrowserRouter>
-    <Topbar />
-      <Routes>
-        <Route exact path="/" element = {<Home/>}/>
-        <Route path="/register" element = {  user ? <Home /> : <Register/>}/>
-        <Route path="/login" element = {user ? <Home /> :<Login/>}/>
-        <Route path="/write" element = { user ? <Write /> : <Register/>}/>
-        <Route path="/settings" element = { user ? <Settings /> : <Register/>}/>Z
-        <Route path="/post/:postId"element = {<Single  />}/>
-      </Routes>
-    </BrowserRouter>
+         <Link className='link' to='/'> 
+         <li className='topListItem'>HOME</li>
+         </Link>
+         <Link className='link' to='./about'> 
+         <li className='topListItem'>ABOUT</li>
+         </Link>
+         <Link className='link' to='/contact'> 
+         <li className='topListItem'>CONTACT</li>
+         </Link>
+         <Link className='link' to='/write'> 
+         <li className='topListItem'>WRITE</li>
+         </Link>
+         <Link className='link' to='/logout'> 
+         <li className='topListItem'>{user && "LOGOUT"}</li>
+         </Link>
+         
+         </ul>
+      </div>
+      <div className='topRight'>
+      { user?
+      ( <img className='topImg' 
+      src='https://plus.unsplash.com/premium_photo-1680553492268-516537c44d91?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D' />
+      ) : (
+        <ul className='topList'>
+        <li className='topListItem'>
+        <Link className='link' to='/Register'> 
+          REGISTER
+         </Link>
+         </li>
+         <li className='topListItem'>
+        <Link className='link' to='/login'> 
+         LOGIN
+         </Link>
+         </li>
+         </ul>
 
+      )
 
-
-    {/* <BrowserRouter >
-    <Topbar />
-      <Routes>
-      
-        <Route exact path="/"> < Home/> </Route>
-        
-        <Route path="/register" >
-        {user ? <Home /> : <Register/>}
-          </Route>
-        <Route path="/login" > < Login/></Route>
-        <Route path="/write" > < Write/> </Route>
-        <Route path="/settings" > < Settings/> </Route>
-        <Route path="/post/:postId" > <Single/> </Route>
-        
-      </Routes>
-      </BrowserRouter> */}
-  
-    </>
-    
-  
-  );
+       }
+       
+       <SearchIcon className='topSearchIcon' />
+      </div>
+   
+    </div>
+  ) 
 }
-
-export default App;
